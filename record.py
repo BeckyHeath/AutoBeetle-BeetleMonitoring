@@ -35,7 +35,7 @@ def capture_picture(camera_index, save_dir):
 
 def main():
     # Define root save directory
-    root_dir = "/Recorded-Images/Test"
+    root_dir = "Recorded-Images/Test"
     if not os.path.exists(root_dir):
         os.makedirs(root_dir)
 
