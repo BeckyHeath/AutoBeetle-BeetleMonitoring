@@ -2,6 +2,10 @@ import os
 import time
 import cv2
 
+# Updated Tues 2pm UK 
+# TEST VERSION ONLY
+
+
 # Function to capture picture from camera
 def capture_picture(camera_index, save_dir):
     # Open camera
@@ -37,7 +41,7 @@ def main():
 
     # Wait for 30 minutes
     print("Waiting for 30 minutes before capturing pictures...")
-    time.sleep(1800)
+    time.sleep(10)
 
     # Set output directory for Camera 1
     save_dir01 = root_dir + "/Camera01"
@@ -49,7 +53,7 @@ def main():
 
     # Wait for 10 seconds
     print("Waiting for 10 seconds...")
-    time.sleep(10)
+    time.sleep(2)
 
     # Set output directory for camera 2
     save_dir02 = root_dir + "/Camera02"
@@ -57,7 +61,7 @@ def main():
         os.makedirs(save_dir02)
 
     # Capture picture from camera 2
-    capture_picture(1, save_dir02)
+    capture_picture(0, save_dir02)
 
 if __name__ == "__main__":
     main()
