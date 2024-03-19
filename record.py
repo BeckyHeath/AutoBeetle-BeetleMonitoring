@@ -40,7 +40,7 @@ def main():
         os.makedirs(root_dir)
 
     # Wait for 30 minutes
-    print("Waiting for 30 minutes before capturing pictures...")
+    print("Waiting for 10 seconds before capturing pictures...")
     time.sleep(10)
 
     # Set output directory for Camera 1
@@ -52,7 +52,7 @@ def main():
     capture_picture(0, save_dir01)
 
     # Wait for 10 seconds
-    print("Waiting for 10 seconds...")
+    print("Waiting for2 seconds...")
     time.sleep(2)
 
     # Set output directory for camera 2
@@ -61,7 +61,8 @@ def main():
         os.makedirs(save_dir02)
 
     # Capture picture from camera 2
-    capture_picture(0, save_dir02)
+    capture_picture(1, save_dir02)
 
 if __name__ == "__main__":
-    main()
+    while True:
+        main()
