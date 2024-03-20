@@ -61,7 +61,7 @@ def main():
         os.makedirs(save_dir02)
 
     # Capture picture from camera 2
-    capture_picture(1, save_dir02)
+    capture_picture(3, save_dir02)
 
 if __name__ == "__main__":
     while True:
