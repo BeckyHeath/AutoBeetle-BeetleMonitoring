@@ -1,6 +1,7 @@
 import os
 import time
 import cv2
+import datetime 
 
 # Updated Tues 2pm UK 
 # TEST VERSION ONLY
@@ -23,7 +24,7 @@ def capture_picture(camera_index, save_dir):
 
     if ret:
         # Save picture
-        timestamp = int(time.time())
+        timestamp = datetime.datetime.now()
         filename = os.path.join(save_dir, f"camera_{camera_index}_{timestamp}.jpg")
         cv2.imwrite(filename, frame)
         print(f"Picture captured from camera {camera_index} and saved as {filename}")
@@ -49,7 +50,7 @@ def main():
         os.makedirs(save_dir01)
 
     # Capture picture from camera 1
-    capture_picture(0, save_dir01)
+    capture_picture(1, save_dir01)
 
     # Wait for 10 seconds
     print("Waiting for2 seconds...")
