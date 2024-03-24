@@ -4,7 +4,6 @@
 
 
 # Activate the venv: 
-python3 -m venv .venv
 source .venv/bin/activate > bugs/Desktop/AutoBeetle-BeetleMonitoring/logfile.log 2>&1
 
 
