@@ -9,7 +9,7 @@ source .venv/bin/activate > bugs/Desktop/AutoBeetle-BeetleMonitoring/logfile.log
 
 
 # Move to the project github
-cd bugs/Desktop/AutoBeetle-BeetleMonitoring/
+cd bugs/Desktop/AutoBeetle-BeetleMonitoring/ > bugs/Desktop/AutoBeetle-BeetleMonitoring/logfile.log 2>&1
 
 
 # Run your record.py and append outputs to log file 
