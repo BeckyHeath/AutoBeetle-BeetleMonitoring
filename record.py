@@ -12,7 +12,7 @@ import datetime
 # Function to capture picture from camera
 def capture_picture(camera_index, save_dir):
     # Open camera
-    camera = cv2.VideoCapture(camera_index, cv2.CAP_MSMF)
+    camera = cv2.VideoCapture(camera_index, cv2.CAP_GSTREAMER)
     if not camera.isOpened():
         print(f"Error: Unable to open camera {camera_index}")
         return
