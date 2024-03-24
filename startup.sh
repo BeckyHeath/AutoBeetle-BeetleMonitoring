@@ -12,9 +12,8 @@ cd /Desktop/AutoBeetle-BeetleMonitoring/
 
 
 # Run your record.py and append outputs to log file 
-python3 record.py  >> logfile.log 2>&1
+python3 record.py  >> logfile.log 2>&1 &
 
 
-# Print the last line of the log file: 
-
-tail -f logfile.log
+# Display the contents of the log file in a terminal window
+x-terminal-emulator -e "tail -f logfile.log"
