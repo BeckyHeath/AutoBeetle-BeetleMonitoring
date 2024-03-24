@@ -4,11 +4,11 @@
 
 
 # Activate the venv: 
-source .venv/bin/activate > bugs/Desktop/AutoBeetle-BeetleMonitoring/logfile.log 2>&1
+source .venv/bin/activate > /home/bugs/Desktop/AutoBeetle-BeetleMonitoring/logfile.log 2>&1
 
 
 # Move to the project github
-cd bugs/Desktop/AutoBeetle-BeetleMonitoring/ > bugs/Desktop/AutoBeetle-BeetleMonitoring/logfile.log 2>&1
+cd /home/bugs/Desktop/AutoBeetle-BeetleMonitoring/ > /home/bugs/Desktop/AutoBeetle-BeetleMonitoring/logfile.log 2>&1
 
 
 # Run your record.py and append outputs to log file 
