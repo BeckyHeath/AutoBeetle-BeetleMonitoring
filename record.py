@@ -56,7 +56,7 @@ def main():
 
     # Wait for 10 seconds
     print("Waiting for2 seconds...")
-    time.sleep(2)
+    time.sleep(60)
 
     # Set output directory for camera 2
     save_dir02 = root_dir + "/Camera02"
