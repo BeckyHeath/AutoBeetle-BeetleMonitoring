@@ -52,7 +52,7 @@ def main():
         os.makedirs(save_dir01)
 
     # Capture picture from camera 1
-    capture_picture(1, save_dir01)
+    capture_picture(0, save_dir01)
 
     # Wait for 10 seconds
     print("Waiting for2 seconds...")
@@ -64,7 +64,7 @@ def main():
         os.makedirs(save_dir02)
 
     # Capture picture from camera 2
-    capture_picture(3, save_dir02)
+    capture_picture(2, save_dir02)
 
 if __name__ == "__main__":
     while True:
