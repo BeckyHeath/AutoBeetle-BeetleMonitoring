@@ -4,7 +4,7 @@ import os
 import time
 import cv2
 import datetime 
-import pyudev
+
 
 # Updated Tues 2pm UK 
 # TEST VERSION ONLY
@@ -38,23 +38,19 @@ def capture_picture(camera_index, save_dir):
     camera.release()
 
 # Function to find cameras - check it works seperately
-def find_cameras():
-    context = pyudev.Context()
-    cameras = {}
-
-    for device in context.list_devices(subsystem='usb'):
-
-        # Check if the device is a video capture device
-        if 'ID_V4L_CAPABILITIES' in device and 'video_capture' in device['ID_V4L_CAPABILITIES']:
-            
-            # Extract unique identifier for the camera
-            identifier = device.get('ID_SERIAL_SHORT') or device.get('ID_SERIAL')
-            
-            if identifier:
-                # Add camera to the dictionary with its identifier
-                cameras[identifier] = device.device_node
-    
-    return cameras
+def FindCameras():
+    # checks the first 20 indexes.
+    index = 0
+    arr = []
+    i = 20
+    while i > 0:
+        cap = cv2.VideoCapture(index)
+        if cap.read()[0]:
+            arr.append(index)
+            cap.release()
+        index += 1
+        i -= 1
+    return arr
 
 
 
@@ -66,13 +62,12 @@ def main():
 
     # Finding cameras
     print("Searching for cameras...")
-    cams = find_cameras()
+    cams = FindCameras()
     noCams = len(cams) 
     print(noCams, " cameras found.")
 
     #Autoassign the cameras
-    for identifier, port in cams.items(): 
-        index = ''.join(c for c in port if c.isdigit())
+    for index in cams: 
 
         # Make directory
         save_dir = os.path.join(root_dir, f"Camera{index}") 

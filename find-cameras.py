@@ -1,31 +1,19 @@
-import pyudev
+import cv2
 
-def find_cameras():
-    context = pyudev.Context()
-    cameras = {}
+def FindCameras():
+    # checks the first 20 indexes.
+    index = 0
+    arr = []
+    i = 20
+    while i > 0:
+        cap = cv2.VideoCapture(index)
+        if cap.read()[0]:
+            arr.append(index)
+            cap.release()
+        index += 1
+        i -= 1
+    return arr
 
-    for device in context.list_devices(subsystem='usb'):
+indexes = FindCameras()
 
-        # Check if the device is a video capture device
-        if 'ID_V4L_CAPABILITIES' in device and 'video_capture' in device['ID_V4L_CAPABILITIES']:
-            
-            # Extract unique identifier for the camera
-            identifier = device.get('ID_SERIAL_SHORT') or device.get('ID_SERIAL')
-            
-            if identifier:
-                # Add camera to the dictionary with its identifier
-                cameras[identifier] = device.device_node
-    
-    return cameras
-
-if __name__ == "__main__":
-    cameras = find_cameras()
-    if not cameras:
-        print("No cameras found.")
-    elif len(cameras) == 1:
-        identifier, port = next(iter(cameras.items()))
-        print(f"One camera found with identifier {identifier} at port: {port}")
-    else:
-        print("Multiple cameras found:")
-        for identifier, port in cameras.items():
-            print(f"- Identifier: {identifier}, Port: {port}")
+print(indexes)
