@@ -4,6 +4,7 @@ import os
 import time
 import cv2
 import datetime 
+import pyudev
 
 # Updated Tues 2pm UK 
 # TEST VERSION ONLY
@@ -36,36 +37,61 @@ def capture_picture(camera_index, save_dir):
     # Release camera
     camera.release()
 
+# Function to find cameras - check it works seperately
+def find_cameras():
+    context = pyudev.Context()
+    cameras = {}
+
+    for device in context.list_devices(subsystem='video4linux'):
+
+        # Check if the device is a video capture device
+        if 'ID_V4L_CAPABILITIES' in device and 'video_capture' in device['ID_V4L_CAPABILITIES']:
+            
+            # Extract unique identifier for the camera
+            identifier = device.get('ID_SERIAL_SHORT') or device.get('ID_SERIAL')
+            
+            if identifier:
+                # Add camera to the dictionary with its identifier
+                cameras[identifier] = device.device_node
+    
+    return cameras
+
+
+
 def main():
     # Define root save directory
     root_dir = "Recorded-Images/Test"
     if not os.path.exists(root_dir):
         os.makedirs(root_dir)
 
-    # Wait for 30 minutes
-    print("Waiting for 10 seconds before capturing pictures...")
-    time.sleep(10)
+    # Finding cameras
+    print("Searching for cameras...")
+    cams = find_cameras()
+    noCams = len(cams) 
+    print(noCams, " cameras found.")
 
-    # Set output directory for Camera 1
-    save_dir01 = root_dir + "/Camera01"
-    if not os.path.exists(save_dir01):
-        os.makedirs(save_dir01)
+    #Autoassign the cameras
+    for identifier, port in cams.items(): 
+        index = ''.join(c for c in port if c.isdigit())
 
-    # Capture picture from camera 1
-    capture_picture(0, save_dir01)
+        # Make directory
+        save_dir = os.path.join(root_dir, f"Camera{index}") 
+        if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
+        
+        # Take picture: 
+        capture_picture(index, save_dir)
 
-    # Wait for 10 seconds
-    print("Waiting for2 seconds...")
-    time.sleep(60)
+        # Wait 2 seconds
+        print("Waiting for 2 seconds between cameras...")
+        time.sleep(2)
 
-    # Set output directory for camera 2
-    save_dir02 = root_dir + "/Camera02"
-    if not os.path.exists(save_dir02):
-        os.makedirs(save_dir02)
+    # Wait for 2 minutes
+    print("Waiting for 2 minutes before capturing pictures...")
+    time.sleep(120)
 
-    # Capture picture from camera 2
-    capture_picture(2, save_dir02)
 
 if __name__ == "__main__":
+    
     while True:
         main()
