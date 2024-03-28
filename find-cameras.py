@@ -4,7 +4,7 @@ def find_cameras():
     context = pyudev.Context()
     cameras = {}
 
-    for device in context.list_devices(subsystem='video4linux'):
+    for device in context.list_devices(subsystem='usb'):
 
         # Check if the device is a video capture device
         if 'ID_V4L_CAPABILITIES' in device and 'video_capture' in device['ID_V4L_CAPABILITIES']:
