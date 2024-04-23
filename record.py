@@ -56,7 +56,7 @@ def FindCameras():
 
 def main():
     # Define root save directory
-    root_dir = "Recorded-Images/Test"
+    root_dir = "Recorded-Images/Experiment"
     if not os.path.exists(root_dir):
         os.makedirs(root_dir)
 
