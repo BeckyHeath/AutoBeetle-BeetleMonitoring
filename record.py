@@ -79,11 +79,20 @@ def main():
 
         # Wait 2 seconds
         print("Waiting for 2 seconds between cameras...")
-        time.sleep(2)
+        time.sleep(1)
 
     # Wait for 2 minutes
     print("Waiting for 2 minutes before capturing pictures...")
-    time.sleep(120)
+    
+    # Put wait time here: ###########################################################
+    wait_time = 60
+    time_adjusted = wait_time - noCams*1
+    
+    if time_adjusted < 0:
+        time_adjusted = 0
+    
+    
+    time.sleep(time_adjusted)
 
 
 if __name__ == "__main__":

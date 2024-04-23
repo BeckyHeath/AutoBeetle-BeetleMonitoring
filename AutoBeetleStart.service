@@ -1,0 +1,12 @@
+[Unit]
+Description=Run Beetle Cameras on Raspberry Pi startup
+
+[Service]
+ExecStart=sh /home/bugs/Desktop/AutoBeetle-BeetleMonitoring/startup2.sh
+Type=exec      
+
+[Install]
+WantedBy=default.target
+
+
+
