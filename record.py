@@ -42,7 +42,7 @@ def FindCameras():
     # checks the first 20 indexes.
     index = 0
     arr = []
-    i = 20
+    i = 50
     while i > 0:
         cap = cv2.VideoCapture(index)
         if cap.read()[0]:
